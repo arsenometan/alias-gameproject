@@ -86,7 +86,7 @@
         /* Cargo ship sailing across the horizon */
         .cargo-ship {
             position: absolute;
-            top: 47%;
+            bottom: 50%;
             width: 160px;
             height: 50px;
             opacity: 0.85;
@@ -95,7 +95,7 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
         }
         .cargo-ship-2 {
-            top: 51%;
+            bottom: 50.5%;
             width: 110px;
             opacity: 0.55;
             animation: shipSail 110s linear infinite;
@@ -107,16 +107,17 @@
             100% { left: 110%; }
         }
 
-        /* Small island with lighthouse, sits below the cargo ships */
+        /* Lighthouse on a small rocky island */
         .lighthouse {
             position: absolute;
-            bottom: 32%;
-            left: 38%;
-            width: 80px;
-            height: 60px;
-            opacity: 0.6;
+            bottom: 46%;
+            left: 44%;
+            width: 70px;
+            height: 98px;
+            opacity: 0.95;
             pointer-events: none;
-            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.25));
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
+            z-index: 2;
         }
         
         /* Deep water layer */
@@ -454,15 +455,6 @@
         <div class="cloud cloud-1"></div>
         <div class="cloud cloud-2"></div>
         <div class="cloud cloud-3"></div>
-        <svg class="lighthouse" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="40" cy="55" rx="34" ry="5" fill="#1a3a4a"/>
-            <path d="M8 55 Q22 46 36 50 Q52 46 72 55 Z" fill="#1a3a4a"/>
-            <rect x="36" y="32" width="8" height="18" fill="#1a3a4a"/>
-            <polygon points="34,32 46,32 44,22 36,22" fill="#1a3a4a"/>
-            <rect x="35" y="14" width="10" height="8" fill="#1a3a4a"/>
-            <polygon points="33,14 47,14 40,6" fill="#1a3a4a"/>
-            <circle cx="40" cy="18" r="1.8" fill="#ffd87a" opacity="0.95"/>
-        </svg>
         <svg class="cargo-ship" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 45 L8 55 L192 55 L195 45 Z" fill="#0e2a3a"/>
             <rect x="20" y="36" width="14" height="9" fill="#c44e3a"/>
@@ -506,6 +498,59 @@
         <div class="sparkle sparkle-7"></div>
         <div class="water-gleam"></div>
         <div class="water-gleam water-gleam2"></div>
+        <svg class="lighthouse" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- Rocky island base -->
+            <ellipse cx="50" cy="134" rx="46" ry="4" fill="#2a3a4a" opacity="0.45"/>
+            <path d="M3 130 Q18 110 32 115 Q44 105 50 110 Q56 105 68 115 Q82 110 97 130 Z" fill="#6e7e8e"/>
+            <path d="M14 130 Q26 117 36 121 Q46 115 50 118 Q54 115 64 121 Q74 117 86 130 Z" fill="#90a0b0"/>
+            <ellipse cx="22" cy="128" rx="6" ry="2" fill="#5a6a7a"/>
+            <ellipse cx="78" cy="128" rx="6" ry="2" fill="#5a6a7a"/>
+
+            <!-- Foundation platform -->
+            <rect x="34" y="106" width="32" height="6" fill="#dcdcdc"/>
+            <rect x="34" y="105" width="32" height="2" fill="#b0b0b0"/>
+
+            <!-- Tower body (white) -->
+            <rect x="38" y="22" width="24" height="84" fill="#fafafa"/>
+            <!-- Red horizontal stripes -->
+            <rect x="38" y="22" width="24" height="11" fill="#e63838"/>
+            <rect x="38" y="44" width="24" height="11" fill="#e63838"/>
+            <rect x="38" y="66" width="24" height="11" fill="#e63838"/>
+            <rect x="38" y="88" width="24" height="11" fill="#e63838"/>
+
+            <!-- Door at the bottom -->
+            <path d="M46 106 L46 96 Q46 92 50 92 Q54 92 54 96 L54 106 Z" fill="#2a1810"/>
+            <!-- Windows -->
+            <rect x="48" y="38" width="4" height="5" rx="0.5" fill="#2a1810"/>
+            <rect x="48" y="60" width="4" height="5" rx="0.5" fill="#2a1810"/>
+            <rect x="48" y="82" width="4" height="5" rx="0.5" fill="#2a1810"/>
+
+            <!-- Gallery / observation deck -->
+            <rect x="32" y="18" width="36" height="4" fill="#c52828"/>
+            <rect x="32" y="17" width="36" height="1.2" fill="#8a1818"/>
+            <!-- Railing -->
+            <line x1="34" y1="13" x2="34" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="40" y1="13" x2="40" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="46" y1="13" x2="46" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="50" y1="13" x2="50" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="54" y1="13" x2="54" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="60" y1="13" x2="60" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="66" y1="13" x2="66" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="34" y1="13" x2="66" y2="13" stroke="#2a1810" stroke-width="0.7"/>
+
+            <!-- Lantern room with light glow -->
+            <rect x="40" y="8" width="20" height="5" fill="#fff5b0"/>
+            <rect x="42" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="46" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="50" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="54" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="40" y="6" width="20" height="2" fill="#c52828"/>
+
+            <!-- Roof (red) -->
+            <path d="M37 8 L63 8 L60 2 Q50 -1 40 2 Z" fill="#c52828"/>
+            <!-- Spire -->
+            <circle cx="50" cy="1" r="1.2" fill="#ffd700"/>
+        </svg>
         <div class="ship-silhouette">⛵</div>
         <div class="bird">🕊️</div>
         <div class="bird bird2">🕊️</div>
