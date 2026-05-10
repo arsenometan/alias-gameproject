@@ -45,22 +45,79 @@
             background: linear-gradient(180deg, #c8e4f0 0%, #b0d4e8 30%, #8fc0d8 60%, #6aaec8 100%);
         }
         
-        /* Sun reflection */
+        /* Sun with halo */
         .sun {
             position: absolute;
-            top: 15%;
+            top: 13%;
             right: 12%;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(255,230,150,0.9) 0%, rgba(255,200,100,0.4) 60%, transparent 100%);
+            width: 64px;
+            height: 64px;
+            background: radial-gradient(circle, #fff8dc 0%, #ffe48a 45%, #f5c150 80%, transparent 100%);
             border-radius: 50%;
-            filter: blur(2px);
+            box-shadow:
+                0 0 30px 12px rgba(255, 220, 130, 0.45),
+                0 0 70px 40px rgba(255, 200, 100, 0.18),
+                0 0 140px 80px rgba(255, 200, 100, 0.08);
             animation: sunGlow 6s ease-in-out infinite;
         }
-        
+
         @keyframes sunGlow {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
+            0%, 100% { opacity: 0.92; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.04); }
+        }
+
+        /* Soft clouds for sky depth */
+        .cloud {
+            position: absolute;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 50%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(3px);
+            pointer-events: none;
+        }
+        .cloud-1 { top: 8%;  left: 5%;  width: 180px; height: 50px; opacity: 0.7; animation: cloudDrift 90s linear infinite; }
+        .cloud-2 { top: 22%; left: 35%; width: 140px; height: 38px; opacity: 0.55; animation: cloudDrift 120s linear infinite reverse; }
+        .cloud-3 { top: 5%;  left: 60%; width: 220px; height: 55px; opacity: 0.6; animation: cloudDrift 150s linear infinite; }
+
+        @keyframes cloudDrift {
+            0%   { transform: translateX(-20px); }
+            100% { transform: translateX(40px); }
+        }
+
+        /* Cargo ship sailing across the horizon */
+        .cargo-ship {
+            position: absolute;
+            bottom: 50%;
+            width: 160px;
+            height: 50px;
+            opacity: 0.85;
+            animation: shipSail 75s linear infinite;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+        }
+        .cargo-ship-2 {
+            bottom: 28%;
+            width: 140px;
+            opacity: 0.7;
+            animation: shipSail 95s linear infinite;
+            animation-delay: -40s;
+        }
+
+        @keyframes shipSail {
+            0%   { left: -180px; }
+            100% { left: 110%; }
+        }
+
+        /* Lighthouse on a small rocky island */
+        .lighthouse {
+            position: absolute;
+            bottom: 46%;
+            left: 9%;
+            width: 70px;
+            height: 98px;
+            opacity: 0.95;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
+            z-index: 2;
         }
         
         /* Deep water layer */
@@ -71,6 +128,73 @@
             width: 100%;
             height: 50%;
             background: linear-gradient(180deg, #2a7aaa 0%, #1a5a7a 30%, #0e3a5a 70%, #0a2a3a 100%);
+        }
+
+        /* Shimmer texture spread across all water surface */
+        .water-shimmer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.018 0.07' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+            background-size: 800px 500px;
+            mix-blend-mode: screen;
+            opacity: 0.22;
+            animation: shimmerDrift 35s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes shimmerDrift {
+            0%   { background-position: 0 0; }
+            100% { background-position: 400px -200px; }
+        }
+
+        /* Ripple lines distributed across the entire water area */
+        .ripple {
+            position: absolute;
+            left: 0;
+            width: 200%;
+            height: 14px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 14'><path d='M0,7 Q25,3 50,7 T100,7 T150,7 T200,7 T250,7 T300,7 T350,7 T400,7' stroke='rgba(200,230,245,0.5)' stroke-width='1' fill='none'/></svg>");
+            background-repeat: repeat-x;
+            background-size: 400px 14px;
+            pointer-events: none;
+        }
+        .ripple-1 { bottom: 47%; opacity: 0.55; animation: rippleSlide 40s linear infinite; }
+        .ripple-2 { bottom: 41%; opacity: 0.5;  animation: rippleSlide 50s linear infinite reverse; }
+        .ripple-3 { bottom: 35%; opacity: 0.55; animation: rippleSlide 32s linear infinite; }
+        .ripple-4 { bottom: 28%; opacity: 0.5;  animation: rippleSlide 45s linear infinite reverse; }
+        .ripple-5 { bottom: 22%; opacity: 0.6;  animation: rippleSlide 28s linear infinite; }
+        .ripple-6 { bottom: 16%; opacity: 0.55; animation: rippleSlide 38s linear infinite reverse; }
+        .ripple-7 { bottom: 10%; opacity: 0.65; animation: rippleSlide 22s linear infinite; }
+
+        @keyframes rippleSlide {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Scattered sparkle highlights across water */
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 230, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 220, 0.5);
+            pointer-events: none;
+            animation: sparkleFade 4s ease-in-out infinite;
+        }
+        .sparkle-1 { bottom: 44%; left: 20%; animation-delay: 0s; }
+        .sparkle-2 { bottom: 38%; left: 65%; animation-delay: -1.2s; }
+        .sparkle-3 { bottom: 30%; left: 40%; animation-delay: -2.4s; }
+        .sparkle-4 { bottom: 25%; left: 80%; animation-delay: -0.8s; }
+        .sparkle-5 { bottom: 18%; left: 15%; animation-delay: -3.1s; }
+        .sparkle-6 { bottom: 12%; left: 55%; animation-delay: -1.7s; }
+        .sparkle-7 { bottom: 42%; left: 88%; animation-delay: -2.9s; }
+
+        @keyframes sparkleFade {
+            0%, 100% { opacity: 0;   transform: scale(0.5); }
+            50%      { opacity: 0.9; transform: scale(1.2); }
         }
         
         /* Wave layers for realistic animation */
@@ -328,14 +452,105 @@
     <div class="ocean-bg">
         <div class="sky"></div>
         <div class="sun"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <svg class="cargo-ship" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 45 L8 55 L192 55 L195 45 Z" fill="#0e2a3a"/>
+            <rect x="20" y="36" width="14" height="9" fill="#c44e3a"/>
+            <rect x="35" y="36" width="14" height="9" fill="#1f6a8a"/>
+            <rect x="50" y="36" width="14" height="9" fill="#3a8b6e"/>
+            <rect x="65" y="36" width="14" height="9" fill="#c44e3a"/>
+            <rect x="80" y="36" width="14" height="9" fill="#1f6a8a"/>
+            <rect x="20" y="27" width="14" height="9" fill="#1f6a8a"/>
+            <rect x="35" y="27" width="14" height="9" fill="#3a8b6e"/>
+            <rect x="50" y="27" width="14" height="9" fill="#c44e3a"/>
+            <rect x="65" y="27" width="14" height="9" fill="#3a8b6e"/>
+            <rect x="80" y="27" width="14" height="9" fill="#c44e3a"/>
+            <rect x="105" y="20" width="20" height="25" fill="#0e2a3a"/>
+            <rect x="110" y="14" width="10" height="8" fill="#0e2a3a"/>
+            <rect x="113" y="6" width="3" height="10" fill="#0e2a3a"/>
+        </svg>
+        <svg class="cargo-ship cargo-ship-2" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 45 L8 55 L192 55 L195 45 Z" fill="#0e2a3a"/>
+            <rect x="25" y="33" width="16" height="12" fill="#0e2a3a"/>
+            <rect x="45" y="33" width="16" height="12" fill="#0e2a3a"/>
+            <rect x="65" y="33" width="16" height="12" fill="#0e2a3a"/>
+            <rect x="85" y="33" width="16" height="12" fill="#0e2a3a"/>
+            <rect x="115" y="22" width="18" height="23" fill="#0e2a3a"/>
+            <rect x="120" y="12" width="3" height="10" fill="#0e2a3a"/>
+        </svg>
         <div class="water-deep"></div>
-        <div class="wave wave1"></div>
-        <div class="wave wave2"></div>
-        <div class="wave wave3"></div>
-        <div class="foam"></div>
+        <div class="water-shimmer"></div>
+        <div class="ripple ripple-1"></div>
+        <div class="ripple ripple-2"></div>
+        <div class="ripple ripple-3"></div>
+        <div class="ripple ripple-4"></div>
+        <div class="ripple ripple-5"></div>
+        <div class="ripple ripple-6"></div>
+        <div class="ripple ripple-7"></div>
+        <div class="sparkle sparkle-1"></div>
+        <div class="sparkle sparkle-2"></div>
+        <div class="sparkle sparkle-3"></div>
+        <div class="sparkle sparkle-4"></div>
+        <div class="sparkle sparkle-5"></div>
+        <div class="sparkle sparkle-6"></div>
+        <div class="sparkle sparkle-7"></div>
         <div class="water-gleam"></div>
         <div class="water-gleam water-gleam2"></div>
-        <div class="ship-silhouette">⛵</div>
+        <svg class="lighthouse" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- Rocky island base -->
+            <ellipse cx="50" cy="134" rx="46" ry="4" fill="#2a3a4a" opacity="0.45"/>
+            <path d="M3 130 Q18 110 32 115 Q44 105 50 110 Q56 105 68 115 Q82 110 97 130 Z" fill="#6e7e8e"/>
+            <path d="M14 130 Q26 117 36 121 Q46 115 50 118 Q54 115 64 121 Q74 117 86 130 Z" fill="#90a0b0"/>
+            <ellipse cx="22" cy="128" rx="6" ry="2" fill="#5a6a7a"/>
+            <ellipse cx="78" cy="128" rx="6" ry="2" fill="#5a6a7a"/>
+
+            <!-- Foundation platform -->
+            <rect x="34" y="106" width="32" height="6" fill="#dcdcdc"/>
+            <rect x="34" y="105" width="32" height="2" fill="#b0b0b0"/>
+
+            <!-- Tower body (white) -->
+            <rect x="38" y="22" width="24" height="84" fill="#fafafa"/>
+            <!-- Red horizontal stripes -->
+            <rect x="38" y="22" width="24" height="11" fill="#e63838"/>
+            <rect x="38" y="44" width="24" height="11" fill="#e63838"/>
+            <rect x="38" y="66" width="24" height="11" fill="#e63838"/>
+            <rect x="38" y="88" width="24" height="11" fill="#e63838"/>
+
+            <!-- Door at the bottom -->
+            <path d="M46 106 L46 96 Q46 92 50 92 Q54 92 54 96 L54 106 Z" fill="#2a1810"/>
+            <!-- Windows -->
+            <rect x="48" y="38" width="4" height="5" rx="0.5" fill="#2a1810"/>
+            <rect x="48" y="60" width="4" height="5" rx="0.5" fill="#2a1810"/>
+            <rect x="48" y="82" width="4" height="5" rx="0.5" fill="#2a1810"/>
+
+            <!-- Gallery / observation deck -->
+            <rect x="32" y="18" width="36" height="4" fill="#c52828"/>
+            <rect x="32" y="17" width="36" height="1.2" fill="#8a1818"/>
+            <!-- Railing -->
+            <line x1="34" y1="13" x2="34" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="40" y1="13" x2="40" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="46" y1="13" x2="46" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="50" y1="13" x2="50" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="54" y1="13" x2="54" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="60" y1="13" x2="60" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="66" y1="13" x2="66" y2="18" stroke="#2a1810" stroke-width="0.7"/>
+            <line x1="34" y1="13" x2="66" y2="13" stroke="#2a1810" stroke-width="0.7"/>
+
+            <!-- Lantern room with light glow -->
+            <rect x="40" y="8" width="20" height="5" fill="#fff5b0"/>
+            <rect x="42" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="46" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="50" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="54" y="9" width="2" height="3" fill="#ffd870"/>
+            <rect x="40" y="6" width="20" height="2" fill="#c52828"/>
+
+            <!-- Roof (red) -->
+            <path d="M37 8 L63 8 L60 2 Q50 -1 40 2 Z" fill="#c52828"/>
+            <!-- Spire -->
+            <circle cx="50" cy="1" r="1.2" fill="#ffd700"/>
+        </svg>
         <div class="bird">🕊️</div>
         <div class="bird bird2">🕊️</div>
     </div>
@@ -359,7 +574,23 @@
             "Toyota", "Honda", "Nissan", "Ford", "Chevrolet", "Tesla", "Volkswagen", "BMW", "Mercedes Benz",
             "Audi", "Porsche", "Ferrari", "Lamborghini", "Volvo", "Hyundai", "Kia",
             "Nike", "Adidas", "Apple", "Samsung", "Sony", "Microsoft", "Google", "Amazon", "Netflix",
-            "Coca Cola", "McDonald's", "Starbucks", "Disney", "IKEA"
+            "Coca Cola", "McDonald's", "Starbucks", "Disney", "IKEA",
+            "Customs", "Waybill", "Invoice", "Bill of Lading", "SKU (Stock Keeping Unit)",
+            "Quarantine", "LTL", "Consolidation", "Freight", "Warehouse",
+            "Inventory", "Barcode", "FTL", "Incoterms", "Shipment",
+            "Certificate of Origin", "Cargo insurance", "Delivery time", "Last mile delivery",
+            "LIFO (Last In, First Out)", "FIFO (First In, First Out)", "Distribution Center",
+            "Air Waybill (AWB)", "Container", "Pallet", "Demurrage", "Export", "Import",
+            "OTIF (On Time In Full)", "Delivery drone", "Force majeure", "Freight forwarder",
+            "Cross-docking", "FOB", "CIF", "DDP", "DHL", "Maersk", "FedEx", "UPS",
+            "Amazon Logistics", "Kuehne+Nagel",
+            "E-commerce", "Electric truck", "Green logistics", "Autonomous vehicle",
+            "Box", "Map", "Port", "Fuel", "Schedule", "Stamp", "Receipt", "Signature",
+            "Address", "Package", "Wrapping", "Bubble wrap", "Sticker", "Contract", "Label",
+            "QR code", "Oversized cargo", "Special cargo", "Fragile items", "Luxury goods",
+            "Bulk cargo", "Liquid cargo", "Perishables", "Valuable cargo",
+            "IoT sensor", "Bottleneck", "Just-in-time", "Cybersecurity",
+            "Suez Canal", "Panama Canal", "Bosporus", "Port of Ambarlı"
         ];
 
         function shuffleArray(arr) {
