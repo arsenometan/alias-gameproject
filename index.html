@@ -107,16 +107,16 @@
             100% { left: 110%; }
         }
 
-        /* Lighthouse silhouette on the far left */
+        /* Small island with lighthouse, sits below the cargo ships */
         .lighthouse {
             position: absolute;
-            bottom: 38%;
-            left: 3%;
-            width: 22px;
-            height: 70px;
-            opacity: 0.5;
+            bottom: 32%;
+            left: 38%;
+            width: 80px;
+            height: 60px;
+            opacity: 0.6;
             pointer-events: none;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.25));
         }
         
         /* Deep water layer */
@@ -454,12 +454,14 @@
         <div class="cloud cloud-1"></div>
         <div class="cloud cloud-2"></div>
         <div class="cloud cloud-3"></div>
-        <svg class="lighthouse" viewBox="0 0 22 70" xmlns="http://www.w3.org/2000/svg">
-            <rect x="8" y="55" width="6" height="15" fill="#1a3a4a"/>
-            <polygon points="6,55 16,55 14,30 8,30" fill="#1a3a4a"/>
-            <rect x="7" y="22" width="8" height="8" fill="#1a3a4a"/>
-            <polygon points="5,22 17,22 11,12" fill="#1a3a4a"/>
-            <circle cx="11" cy="26" r="1.5" fill="#ffd87a" opacity="0.9"/>
+        <svg class="lighthouse" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="55" rx="34" ry="5" fill="#1a3a4a"/>
+            <path d="M8 55 Q22 46 36 50 Q52 46 72 55 Z" fill="#1a3a4a"/>
+            <rect x="36" y="32" width="8" height="18" fill="#1a3a4a"/>
+            <polygon points="34,32 46,32 44,22 36,22" fill="#1a3a4a"/>
+            <rect x="35" y="14" width="10" height="8" fill="#1a3a4a"/>
+            <polygon points="33,14 47,14 40,6" fill="#1a3a4a"/>
+            <circle cx="40" cy="18" r="1.8" fill="#ffd87a" opacity="0.95"/>
         </svg>
         <svg class="cargo-ship" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 45 L8 55 L192 55 L195 45 Z" fill="#0e2a3a"/>
@@ -502,10 +504,6 @@
         <div class="sparkle sparkle-5"></div>
         <div class="sparkle sparkle-6"></div>
         <div class="sparkle sparkle-7"></div>
-        <div class="wave wave1"></div>
-        <div class="wave wave2"></div>
-        <div class="wave wave3"></div>
-        <div class="foam"></div>
         <div class="water-gleam"></div>
         <div class="water-gleam water-gleam2"></div>
         <div class="ship-silhouette">⛵</div>
